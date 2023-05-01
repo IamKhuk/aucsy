@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'dart:io';
+import '../auth/login_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -32,8 +34,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
       backgroundColor: AppTheme.black,
       body: VisibilityDetector(
         key: UniqueKey(),
-        onVisibilityChanged: (visiblityInfo) {
-          if (visiblityInfo.visibleFraction > 0.8) {
+        onVisibilityChanged: (visibilityInfo) {
+          if (visibilityInfo.visibleFraction > 0.8) {
             _animationController.forward();
           } else {
             _animationController.reset();
@@ -55,9 +57,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
               ],
             ),
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-                vertical: 32,
+              padding: EdgeInsets.symmetric(
+                horizontal: 24.w,
+                vertical: Platform.isIOS? 24.h:32.h,
               ),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -135,17 +137,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                           MainButton(
                             text: 'Let\' Explore 🔥',
                             onPressed: () {
-                              // Navigator.of(context).popUntil(
-                              //   (route) => route.isFirst,
-                              // );
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) {
-                              //       return LoginScreen();
-                              //     },
-                              //   ),
-                              // );
+                              Navigator.of(context).popUntil(
+                                (route) => route.isFirst,
+                              );
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return const LoginScreen();
+                                  },
+                                ),
+                              );
                             },
                           ),
                         ],

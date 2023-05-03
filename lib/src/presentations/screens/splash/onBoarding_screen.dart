@@ -1,3 +1,5 @@
+import 'package:aucsy/main.dart';
+import 'package:aucsy/src/presentations/screens/menu/bottom_nav_screen.dart';
 import 'package:aucsy/src/presentations/widgets/buttons/main_button.dart';
 import 'package:aucsy/src/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +48,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
             Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height-150,
+                  height: MediaQuery.of(context).size.height - 150,
                   child: ClipRRect(
                     child: Image.asset(
                       'assets/images/splash_img.jpg',
@@ -59,7 +61,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
             Container(
               padding: EdgeInsets.symmetric(
                 horizontal: 24.w,
-                vertical: Platform.isIOS? 24.h:32.h,
+                vertical: Platform.isIOS ? 24.h : 32.h,
               ),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -97,7 +99,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                         children: [
                           Container(
                             margin: const EdgeInsets.symmetric(horizontal: 12),
-                            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24,),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 16,
+                              horizontal: 24,
+                            ),
                             decoration: BoxDecoration(
                               color: AppTheme.dark,
                               borderRadius: BorderRadius.circular(24),
@@ -144,7 +149,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return const LoginScreen();
+                                    return token == ''
+                                        ? const LoginScreen()
+                                        : const BottomNavScreen();
                                   },
                                 ),
                               );

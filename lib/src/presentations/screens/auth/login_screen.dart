@@ -1,5 +1,6 @@
 import 'package:aucsy/src/presentations/dialog/center_dialog.dart';
 import 'package:aucsy/src/presentations/screens/auth/signUp_screen.dart';
+import 'package:aucsy/src/presentations/screens/menu/bottom_nav_screen.dart';
 import 'package:aucsy/src/presentations/widgets/buttons/main_button.dart';
 import 'package:aucsy/src/presentations/widgets/texts/heading_text.dart';
 import 'package:aucsy/src/presentations/widgets/texts/heading_text_field.dart';
@@ -8,6 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'dart:io';
+
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -256,9 +260,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     Expanded(
                       child: MainButton(
                         text: "Log In",
-                        onPressed: () {
+                        onPressed: () async {
                           if (_loginController.text == 'qwerty' &&
                               _passController.text == 'Qwerty5!') {
+                            SharedPreferences prefs = await SharedPreferences.getInstance();
+                            prefs.setString("token", "token");
+
+                            Navigator.of(context).popUntil(
+                                  (route) => route.isFirst,
+                            );
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const BottomNavScreen();
+                                },
+                              ),
+                            );
                           } else {
                             CenterDialog.showActionFailed(
                               context,
@@ -274,7 +292,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: Platform.isIOS ? 24.h : 32.h),
               ],
-            )
+            ),
           ],
         ),
       ),

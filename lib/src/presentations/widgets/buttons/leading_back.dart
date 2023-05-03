@@ -12,7 +12,7 @@ class LeadingBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const SizedBox(width: 24),
+        const SizedBox(width: 12),
         InkWell(
           borderRadius: BorderRadius.circular(40),
           onTap: () {
@@ -23,7 +23,7 @@ class LeadingBack extends StatelessWidget {
             width: 48,
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: AppTheme.white.withOpacity(0.05),
+              color: Colors.transparent,
               borderRadius: BorderRadius.circular(40),
             ),
             child: Center(

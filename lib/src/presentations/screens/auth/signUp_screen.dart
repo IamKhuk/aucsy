@@ -1,3 +1,4 @@
+import 'package:aucsy/src/presentations/screens/auth/verification_screen.dart';
 import 'package:aucsy/src/presentations/widgets/buttons/main_button.dart';
 import 'package:aucsy/src/presentations/widgets/texts/heading_text.dart';
 import 'package:aucsy/src/presentations/widgets/texts/heading_text_field.dart';
@@ -27,7 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leadingWidth: 72,
+        leadingWidth: 60,
         leading: const LeadingBack(),
       ),
       body: GestureDetector(
@@ -52,8 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: const [
                       Expanded(
                         child: HeadingText(
-                          text:
-                          'Create your Aucsy account',
+                          text: 'Create your Aucsy account',
                         ),
                       ),
                     ],
@@ -262,14 +262,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     SizedBox(width: 24.w),
                     Expanded(
-                      child: MainButton(text: "Sign In", onPressed: () {}),
+                      child: MainButton(
+                        text: "Sign In",
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const VerificationScreen();
+                              },
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     SizedBox(width: 24.w),
                   ],
                 ),
                 SizedBox(height: Platform.isIOS ? 24.h : 32.h),
               ],
-            )
+            ),
           ],
         ),
       ),

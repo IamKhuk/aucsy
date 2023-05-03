@@ -41,6 +41,8 @@ dependencies:
   phlox_animations: ^2.1.1
   visibility_detector: ^0.4.0+2
   flutter_staggered_animations: ^1.1.1
+  sms_autofill: ^2.3.0
+  pinput: ^2.2.31
 
 dev_dependencies:
   flutter_test:

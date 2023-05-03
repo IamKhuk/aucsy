@@ -262,7 +262,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     SizedBox(width: 24.w),
                     Expanded(
-                      child: MainButton(text: "Log In", onPressed: () {}),
+                      child: MainButton(text: "Sign In", onPressed: () {}),
                     ),
                     SizedBox(width: 24.w),
                   ],

@@ -32,6 +32,11 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             platform: TargetPlatform.iOS,
             brightness: Brightness.dark,
+            canvasColor: Colors.transparent,
+            colorScheme: ColorScheme.fromSwatch().copyWith(
+              secondary: const Color(0xFF818C99),
+              brightness: Brightness.dark,
+            ),
           ),
           builder: (BuildContext context, Widget? child) {
             return MediaQuery(

@@ -1,3 +1,4 @@
+import 'package:aucsy/src/presentations/dialog/center_dialog.dart';
 import 'package:aucsy/src/presentations/screens/auth/signUp_screen.dart';
 import 'package:aucsy/src/presentations/widgets/buttons/main_button.dart';
 import 'package:aucsy/src/presentations/widgets/texts/heading_text.dart';
@@ -24,7 +25,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.bg,
-
       body: GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         autofocus: false,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Enter your login',
+                          hintText: 'Enter your username or email',
                           hintStyle: TextStyle(
                             fontFamily: AppTheme.fontFamily,
                             fontSize: 14,
@@ -254,7 +254,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     SizedBox(width: 24.w),
                     Expanded(
-                      child: MainButton(text: "Log In", onPressed: () {}),
+                      child: MainButton(
+                        text: "Log In",
+                        onPressed: () {
+                          if (_loginController.text == 'qwerty' &&
+                              _passController.text == 'Qwerty5!') {
+                          } else {
+                            CenterDialog.showActionFailed(
+                              context,
+                              'Login Error',
+                              'Your login or password is incorrect',
+                            );
+                          }
+                        },
+                      ),
                     ),
                     SizedBox(width: 24.w),
                   ],

@@ -8,6 +8,7 @@ import 'dart:io';
 import '../../widgets/buttons/leading_back.dart';
 import '../../widgets/buttons/main_button.dart';
 import '../../widgets/texts/heading_text.dart';
+import 'login_screen.dart';
 
 class VerificationScreen extends StatefulWidget {
   const VerificationScreen({Key? key}) : super(key: key);
@@ -189,7 +190,22 @@ class _VerificationScreenState extends State<VerificationScreen>
                 children: [
                   SizedBox(width: 24.w),
                   Expanded(
-                    child: MainButton(text: "Send Code", onPressed: () {}),
+                    child: MainButton(
+                      text: "Send Code",
+                      onPressed: () {
+                        Navigator.of(context).popUntil(
+                          (route) => route.isFirst,
+                        );
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const LoginScreen();
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   SizedBox(width: 24.w),
                 ],

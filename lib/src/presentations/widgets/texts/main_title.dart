@@ -15,10 +15,10 @@ class MainTitle extends StatelessWidget {
       text,
       style: const TextStyle(
         fontFamily: AppTheme.fontFamily,
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
         color: AppTheme.white,
-        letterSpacing: 1.5,
+        letterSpacing: 2,
       ),
     );
   }

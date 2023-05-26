@@ -100,8 +100,28 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     return WillPopScope(
       onWillPop: () => showExitPopup(context),
       child: Scaffold(
+        backgroundColor: AppTheme.bg,
         body: Stack(
           children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    AppTheme.red.withOpacity(0.4),
+                    AppTheme.blue.withOpacity(0.1),
+                    // Colors.transparent,
+                    // Colors.transparent,
+                    Colors.transparent,
+                    Colors.transparent,
+                    AppTheme.red.withOpacity(0.2),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: AlignmentDirectional.bottomEnd,
+                ),
+              ),
+            ),
             data[selectedIndex],
             Positioned(
               bottom: 0,
@@ -115,7 +135,9 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                       height: 80,
                       padding: const EdgeInsets.all(16),
                       margin: EdgeInsets.only(
-                          left: 16, bottom: Platform.isIOS ? 24 : 32, right: 16),
+                          left: 16,
+                          bottom: Platform.isIOS ? 24 : 32,
+                          right: 16),
                       decoration: BoxDecoration(
                         color: AppTheme.dark,
                         borderRadius: BorderRadius.circular(80),

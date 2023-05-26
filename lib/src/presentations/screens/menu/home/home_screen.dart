@@ -3,8 +3,6 @@ import 'package:aucsy/src/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../widgets/buttons/leading_back.dart';
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -16,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.bg,
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -31,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Container(
                 height: 48,
                 width: 48,
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(40),
@@ -61,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Container(
                 height: 48,
                 width: 48,
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: Colors.transparent,
                   borderRadius: BorderRadius.circular(40),
@@ -69,8 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Center(
                   child: SvgPicture.asset(
                     'assets/icons/search.svg',
-                    height: 24,
-                    width: 24,
+                    // height: 24,
+                    // width: 24,
                     color: AppTheme.white,
                   ),
                 ),
@@ -80,8 +78,12 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(width: 12),
         ],
       ),
-      body: Center(
-        child: Text('Home Screen'),
+      body: ListView(
+        padding: const EdgeInsets.only(
+          top: 22,
+          bottom: 92,
+        ),
+
       ),
     );
   }

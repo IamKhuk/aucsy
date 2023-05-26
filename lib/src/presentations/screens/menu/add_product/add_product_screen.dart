@@ -13,7 +13,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.bg,
+      backgroundColor: Colors.transparent,
       body: Center(
         child: Text('Add Product Screen'),
       ),

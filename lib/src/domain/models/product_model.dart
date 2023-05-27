@@ -11,6 +11,7 @@ class ProductModel {
   DateTime time;
   int status; // 1=ongoing, -1=finished, 2=upcoming
   double bidMargin;
+  String ctg;
 
   ProductModel({
     required this.id,
@@ -22,5 +23,6 @@ class ProductModel {
     required this.time,
     required this.status,
     required this.bidMargin,
+    this.ctg = 'Trending',
   });
 }

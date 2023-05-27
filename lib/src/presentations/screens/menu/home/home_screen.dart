@@ -1,3 +1,4 @@
+import 'package:aucsy/src/presentations/widgets/texts/heading_title.dart';
 import 'package:aucsy/src/presentations/widgets/texts/main_title.dart';
 import 'package:aucsy/src/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +84,9 @@ class _HomeScreenState extends State<HomeScreen> {
           top: 22,
           bottom: 92,
         ),
-
+        children: [
+          HeadingTitle(text: "text")
+        ],
       ),
     );
   }

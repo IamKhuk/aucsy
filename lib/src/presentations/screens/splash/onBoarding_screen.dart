@@ -140,7 +140,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                           ),
                           SizedBox(height: 32.h),
                           MainButton(
-                            text: 'Let\' Explore 🔥',
+                            text: 'Let\'s Explore 🔥',
                             onPressed: () {
                               Navigator.of(context).popUntil(
                                 (route) => route.isFirst,

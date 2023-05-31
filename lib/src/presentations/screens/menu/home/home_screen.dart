@@ -1,10 +1,10 @@
 import 'package:aucsy/src/presentations/widgets/containers/active_product_container.dart';
+import 'package:aucsy/src/presentations/widgets/containers/product_container.dart';
 import 'package:aucsy/src/presentations/widgets/texts/heading_title.dart';
 import 'package:aucsy/src/presentations/widgets/texts/main_title.dart';
 import 'package:aucsy/src/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/state_manager.dart';
 
 import '../../../../data/dataSources/local/defaults/defaults.dart';
 import '../../../../domain/models/product_model.dart';
@@ -17,32 +17,53 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   List<ProductModel> myActions = [];
   List<ProductModel> ongoing = [];
   List<ProductModel> upcoming = [];
+  List<ProductModel> trending = [];
 
   @override
   void initState() {
-    for(int i = 0; i<=Defaults().products.length-1;i++){
-      if(Defaults().products[i].id<3){
+    for (int i = 0; i <= Defaults().products.length - 1; i++) {
+      if (Defaults().products[i].id < 3) {
         myActions.add(Defaults().products[i]);
       }
-      if(Defaults().products[i].id>=1&&Defaults().products[i].id<=4){
-        upcoming.add(Defaults().products[i]);
-      }
-      if(Defaults().products[i].id>=3&&Defaults().products[i].id<=6){
+      if (Defaults().products[i].id >= 1 && Defaults().products[i].id <= 4) {
         ongoing.add(Defaults().products[i]);
       }
+      if (Defaults().products[i].id >= 4 && Defaults().products[i].id <= 6) {
+        upcoming.add(Defaults().products[i]);
+      }
+      if (Defaults().products[i].ctg == 'Trending') {
+        trending.add(Defaults().products[i]);
+      }
     }
+    _scrollController.addListener(_handleScroll);
     super.initState();
   }
+
+  final ScrollController _scrollController = ScrollController();
+  bool _showDarkAppBar = true;
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_handleScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _handleScroll() {
+    setState(() {
+      _showDarkAppBar = _scrollController.offset <= kToolbarHeight;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: _showDarkAppBar? Colors.transparent : AppTheme.dark,
         elevation: 0,
         leadingWidth: 60,
         centerTitle: true,
@@ -105,9 +126,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       body: ListView(
+        controller: _scrollController,
         padding: const EdgeInsets.only(
           top: 22,
-          bottom: 92,
+          bottom: 112,
         ),
         children: [
           Row(
@@ -127,7 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Row(
                   children: [
                     ActiveProductContainer(product: myActions[index]),
-                    index == myActions.length-1? Container(): const SizedBox(width: 16),
+                    index == myActions.length - 1
+                        ? Container()
+                        : const SizedBox(width: 16),
                   ],
                 );
               },
@@ -137,8 +161,79 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             children: const [
               SizedBox(width: 24),
-              HeadingTitle(text: "Ongoing Actions"),
+              HeadingTitle(text: "Ongoing"),
             ],
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            height: 224,
+            child: ListView.builder(
+              itemCount: ongoing.length,
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Row(
+                  children: [
+                    ProductContainer(product: ongoing[index]),
+                    index == ongoing.length - 1
+                        ? Container()
+                        : const SizedBox(width: 16),
+                  ],
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 28),
+          Row(
+            children: const [
+              SizedBox(width: 24),
+              HeadingTitle(text: "Upcoming"),
+            ],
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            height: 224,
+            child: ListView.builder(
+              itemCount: upcoming.length,
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Row(
+                  children: [
+                    ProductContainer(product: upcoming[index]),
+                    index == upcoming.length - 1
+                        ? Container()
+                        : const SizedBox(width: 16),
+                  ],
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 28),
+          Row(
+            children: const [
+              SizedBox(width: 24),
+              HeadingTitle(text: "Trending"),
+            ],
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            height: 224,
+            child: ListView.builder(
+              itemCount: trending.length,
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Row(
+                  children: [
+                    ProductContainer(product: trending[index]),
+                    index == trending.length - 1
+                        ? Container()
+                        : const SizedBox(width: 16),
+                  ],
+                );
+              },
+            ),
           ),
         ],
       ),

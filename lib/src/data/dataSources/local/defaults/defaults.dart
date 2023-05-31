@@ -28,7 +28,7 @@ class Defaults {
       name: 'It\'s Art',
       img: 'assets/images/product_02.jpg',
       text:
-      'Unlockable content contain link to download the original file and NFT License.',
+          'Unlockable content contain link to download the original file and NFT License.',
       creator: CreatorModel(id: 001, username: 'iamkhuk', avatar: "avatar"),
       currentBid: BidModel(
         bidId: 0002,
@@ -46,7 +46,7 @@ class Defaults {
       name: 'Colour of Art',
       img: 'assets/images/product_03.jpg',
       text:
-      'Unlockable content contain link to download the original file and NFT License.',
+          'Unlockable content contain link to download the original file and NFT License.',
       creator: CreatorModel(id: 001, username: 'iamkhuk', avatar: "avatar"),
       currentBid: BidModel(
         bidId: 0003,
@@ -64,7 +64,7 @@ class Defaults {
       name: 'Abstract Paintings',
       img: 'assets/images/product_04.jpg',
       text:
-      'Unlockable content contain link to download the original file and NFT License.',
+          'Unlockable content contain link to download the original file and NFT License.',
       creator: CreatorModel(id: 001, username: 'iamkhuk', avatar: "avatar"),
       currentBid: BidModel(
         bidId: 0004,
@@ -73,7 +73,12 @@ class Defaults {
         price: 950,
         time: DateTime.now(),
       ),
-      time: DateTime.now(),
+      time: DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        DateTime.now().hour + 4,
+      ),
       status: 1,
       bidMargin: 25,
     ),
@@ -82,7 +87,7 @@ class Defaults {
       name: 'Abstract Paintings',
       img: 'assets/images/product_05.jpg',
       text:
-      'Unlockable content contain link to download the original file and NFT License.',
+          'Unlockable content contain link to download the original file and NFT License.',
       creator: CreatorModel(id: 001, username: 'iamkhuk', avatar: "avatar"),
       currentBid: BidModel(
         bidId: 0005,
@@ -91,7 +96,12 @@ class Defaults {
         price: 520,
         time: DateTime.now(),
       ),
-      time: DateTime.now(),
+      time: DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        DateTime.now().hour + 5,
+      ),
       status: 1,
       bidMargin: 20,
     ),
@@ -100,7 +110,7 @@ class Defaults {
       name: 'Abstract Paintings',
       img: 'assets/images/product_06.jpg',
       text:
-      'Unlockable content contain link to download the original file and NFT License.',
+          'Unlockable content contain link to download the original file and NFT License.',
       creator: CreatorModel(id: 001, username: 'iamkhuk', avatar: "avatar"),
       currentBid: BidModel(
         bidId: 0006,
@@ -109,7 +119,12 @@ class Defaults {
         price: 120,
         time: DateTime.now(),
       ),
-      time: DateTime.now(),
+      time: DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        DateTime.now().hour + 3,
+      ),
       status: 1,
       bidMargin: 10,
     ),

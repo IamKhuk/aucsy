@@ -20,8 +20,8 @@ class _ProductContainerState extends State<ProductContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 224,
-      width: 144,
+      height: 236,
+      width: 156,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: AppTheme.dark,
@@ -32,17 +32,20 @@ class _ProductContainerState extends State<ProductContainer> {
         children: [
           SizedBox(
             height: 136,
-            width: 128,
+            width: 140,
             child: Stack(
               children: [
                 SizedBox(
                   height: 136,
-                  width: 128,
+                  width: 140,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(4),
-                    child: Image.asset(
-                      widget.product.img,
-                      fit: BoxFit.cover,
+                    child: Hero(
+                      tag: widget.product,
+                      child: Image.asset(
+                        widget.product.img,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -50,10 +53,20 @@ class _ProductContainerState extends State<ProductContainer> {
                     ? Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child:
-                                DueTimeContainer(endTime: widget.product.time),
+                          Container(
+                            margin: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppTheme.dark.withOpacity(0.6),
+                              borderRadius: BorderRadius.circular(32),
+                            ),
+                            child: DueTimeText(
+                              endTime: widget.product.time,
+                              onTimeChanged: (time) {},
+                            ),
                           ),
                         ],
                       )
@@ -69,6 +82,7 @@ class _ProductContainerState extends State<ProductContainer> {
               fontSize: 14,
               fontFamily: AppTheme.fontFamily,
               color: AppTheme.white,
+              letterSpacing: 0.2,
             ),
             overflow: TextOverflow.ellipsis,
           ),
@@ -101,11 +115,12 @@ class _ProductContainerState extends State<ProductContainer> {
                 ],
               ),
               Container(
-                padding: const EdgeInsets.only(left: 6, top: 6, bottom: 4, right: 4),
+                padding:
+                    const EdgeInsets.only(left: 6, top: 6, bottom: 4, right: 4),
                 height: 24,
                 width: 24,
-                decoration: const BoxDecoration(
-                  color: AppTheme.blue,
+                decoration: BoxDecoration(
+                  color: AppTheme.blue.withOpacity(0.7),
                   shape: BoxShape.circle,
                 ),
                 child: Center(

@@ -1,3 +1,4 @@
+import 'package:aucsy/src/presentations/screens/menu/home/product_details_screen.dart';
 import 'package:aucsy/src/presentations/widgets/containers/active_product_container.dart';
 import 'package:aucsy/src/presentations/widgets/containers/product_container.dart';
 import 'package:aucsy/src/presentations/widgets/texts/heading_title.dart';
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
       if (Defaults().products[i].id < 3) {
         myActions.add(Defaults().products[i]);
       }
-      if (Defaults().products[i].id >= 1 && Defaults().products[i].id <= 4) {
+      if (Defaults().products[i].id >= 2 && Defaults().products[i].id <= 4) {
         ongoing.add(Defaults().products[i]);
       }
       if (Defaults().products[i].id >= 4 && Defaults().products[i].id <= 6) {
@@ -63,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        backgroundColor: _showDarkAppBar? Colors.transparent : AppTheme.dark,
+        backgroundColor: _showDarkAppBar ? Colors.transparent : AppTheme.dark,
         elevation: 0,
         leadingWidth: 60,
         centerTitle: true,
@@ -140,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 20),
           SizedBox(
-            height: 218,
+            height: 232,
             child: ListView.builder(
               itemCount: myActions.length,
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -148,7 +149,16 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 return Row(
                   children: [
-                    ActiveProductContainer(product: myActions[index]),
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (builder) =>
+                              ProductDetailsScreen(product: myActions[index]),
+                        ),
+                      ),
+                      child: ActiveProductContainer(product: myActions[index]),
+                    ),
                     index == myActions.length - 1
                         ? Container()
                         : const SizedBox(width: 16),
@@ -166,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 20),
           SizedBox(
-            height: 224,
+            height: 236,
             child: ListView.builder(
               itemCount: ongoing.length,
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -174,7 +184,16 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 return Row(
                   children: [
-                    ProductContainer(product: ongoing[index]),
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (builder) =>
+                              ProductDetailsScreen(product: ongoing[index]),
+                        ),
+                      ),
+                      child: ProductContainer(product: ongoing[index]),
+                    ),
                     index == ongoing.length - 1
                         ? Container()
                         : const SizedBox(width: 16),
@@ -192,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 20),
           SizedBox(
-            height: 224,
+            height: 236,
             child: ListView.builder(
               itemCount: upcoming.length,
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -218,7 +237,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(height: 20),
           SizedBox(
-            height: 224,
+            height: 236,
             child: ListView.builder(
               itemCount: trending.length,
               padding: const EdgeInsets.symmetric(horizontal: 24),

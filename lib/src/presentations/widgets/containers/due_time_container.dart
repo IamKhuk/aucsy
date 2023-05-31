@@ -3,25 +3,40 @@ import 'dart:async';
 import 'package:aucsy/src/theme/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 
-class DueTimeContainer extends StatefulWidget {
-  const DueTimeContainer({
+class DueTimeText extends StatefulWidget {
+  const DueTimeText({
     Key? key,
     required this.endTime,
+    this.textSize = 12,
+    required this.onTimeChanged,
   }) : super(key: key);
 
   final DateTime endTime;
+  final double textSize;
+  final Function(bool time) onTimeChanged;
 
   @override
-  State<DueTimeContainer> createState() => _DueTimeContainerState();
+  State<DueTimeText> createState() => _DueTimeTextState();
 }
 
-class _DueTimeContainerState extends State<DueTimeContainer> {
+class _DueTimeTextState extends State<DueTimeText> {
   late Timer _timer;
   Duration _duration = const Duration();
+  late bool _isCountingUp;
 
   @override
   void initState() {
     super.initState();
+    if(widget.endTime.isAfter(DateTime.now())){
+      setState(() {
+        _isCountingUp = false;
+      });
+    }else{
+      setState(() {
+        _isCountingUp = true;
+      });
+    }
+    widget.onTimeChanged(_isCountingUp);
     _startTimer();
   }
 
@@ -38,26 +53,23 @@ class _DueTimeContainerState extends State<DueTimeContainer> {
         if (widget.endTime.isAfter(now)) {
           _duration = widget.endTime.difference(now);
         } else {
-          _timer.cancel();
+          _duration += const Duration(seconds: 1);
+          _isCountingUp = true;
+          widget.onTimeChanged(_isCountingUp);
         }
       });
     });
   }
 
   String _formatDuration(Duration duration) {
-    String twoDigits(int n) {
-      if (n >= 10) return "$n";
-      return "0$n";
-    }
-
-    final hours = twoDigits(duration.inHours.remainder(24));
-    final minutes = twoDigits(duration.inMinutes.remainder(60));
-    final seconds = twoDigits(duration.inSeconds.remainder(60));
-    if (hours == '00') {
+    final hours = duration.inHours.remainder(24).toString();
+    final minutes = duration.inMinutes.remainder(60).toString();
+    final seconds = duration.inSeconds.remainder(60).toString();
+    if (hours == '0') {
       return "${minutes}m : ${seconds}s";
-    } else if (hours == '00' && minutes == '00') {
+    } else if (hours == '0' && minutes == '0') {
       return "${seconds}s";
-    } else if (hours == '00' && minutes == '00' && seconds == '00') {
+    } else if (hours == '0' && minutes == '0' && seconds == '0') {
       return "";
     }
 
@@ -66,23 +78,14 @@ class _DueTimeContainerState extends State<DueTimeContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 4,
-      ),
-      decoration: BoxDecoration(
-        color: AppTheme.dark.withOpacity(0.6),
-        borderRadius: BorderRadius.circular(32),
-      ),
-      child: Text(
-        _formatDuration(_duration),
-        style: const TextStyle(
-          fontFamily: AppTheme.fontFamily,
-          fontSize: 12,
-          fontWeight: FontWeight.normal,
-          color: AppTheme.white,
-        ),
+    return Text(
+      _formatDuration(_duration),
+      style: TextStyle(
+        fontFamily: AppTheme.fontFamily,
+        fontSize: widget.textSize,
+        fontWeight: widget.textSize>12? FontWeight.bold: FontWeight.normal,
+        color: AppTheme.white,
+        height: widget.textSize>12? 1.5 : 1,
       ),
     );
   }

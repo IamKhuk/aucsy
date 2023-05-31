@@ -61,7 +61,7 @@ flutter:
     - assets/fonts/
 
   fonts:
-    - family: Roboto
+    - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-Black.ttf
           weight: 900

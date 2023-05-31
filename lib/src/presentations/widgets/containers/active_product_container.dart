@@ -14,7 +14,7 @@ class ActiveProductContainer extends StatefulWidget {
 
 class _ActiveProductContainerState extends State<ActiveProductContainer> {
 
-  LinearGradient myGradient = const LinearGradient(
+  LinearGradient usernameGradient = const LinearGradient(
     colors: [Color(0xFFBAC1FF), Color(0xFF63FEFE), Color(0xFFFF3EEC),],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
@@ -23,7 +23,7 @@ class _ActiveProductContainerState extends State<ActiveProductContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 218,
+      height: 232,
       width: 256,
       padding: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
@@ -44,9 +44,12 @@ class _ActiveProductContainerState extends State<ActiveProductContainer> {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                widget.product.img,
-                fit: BoxFit.fitWidth,
+              child: Hero(
+                tag: widget.product,
+                child: Image.asset(
+                  widget.product.img,
+                  fit: BoxFit.fitWidth,
+                ),
               ),
             ),
           ),
@@ -109,7 +112,7 @@ class _ActiveProductContainerState extends State<ActiveProductContainer> {
                                 const SizedBox(width: 4),
                                 ShaderMask(
                                   shaderCallback: (bounds) {
-                                    return myGradient.createShader(bounds);
+                                    return usernameGradient.createShader(bounds);
                                   },
                                   child: Text(
                                     "@${widget.product.creator.username}",
@@ -120,7 +123,7 @@ class _ActiveProductContainerState extends State<ActiveProductContainer> {
                                       color: AppTheme.white, // Set an initial color for the text
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           ],

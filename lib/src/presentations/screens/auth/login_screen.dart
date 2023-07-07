@@ -22,7 +22,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _loginController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
-  bool obscure = false;
+  bool obscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -256,35 +256,33 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   children: [
                     SizedBox(width: 24.w),
-                    Expanded(
-                      child: MainButton(
-                        text: "Log In",
-                        onPressed: () async {
-                          if (_loginController.text == 'qwerty' &&
-                              _passController.text == 'Qwerty5!') {
-                            SharedPreferences prefs = await SharedPreferences.getInstance();
-                            prefs.setString("token", "token");
+                    MainButton(
+                      text: "Log In",
+                      onPressed: () async {
+                        if (_loginController.text == 'qwerty' &&
+                            _passController.text == 'Qwerty5!') {
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.setString("token", "token");
 
-                            Navigator.of(context).popUntil(
-                                  (route) => route.isFirst,
-                            );
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const BottomNavScreen();
-                                },
-                              ),
-                            );
-                          } else {
-                            CenterDialog.showActionFailed(
-                              context,
-                              'Login Error',
-                              'Your login or password is incorrect',
-                            );
-                          }
-                        },
-                      ),
+                          Navigator.of(context).popUntil(
+                                (route) => route.isFirst,
+                          );
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const BottomNavScreen();
+                              },
+                            ),
+                          );
+                        } else {
+                          CenterDialog.showActionFailed(
+                            context,
+                            'Login Error',
+                            'Your login or password is incorrect',
+                          );
+                        }
+                      },
                     ),
                     SizedBox(width: 24.w),
                   ],

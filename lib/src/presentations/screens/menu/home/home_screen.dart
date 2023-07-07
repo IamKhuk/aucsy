@@ -1,3 +1,5 @@
+import 'package:aucsy/src/presentations/dialog/bottom_dialog.dart';
+import 'package:aucsy/src/presentations/screens/menu/home/explore_screen.dart';
 import 'package:aucsy/src/presentations/screens/menu/home/product_details_screen.dart';
 import 'package:aucsy/src/presentations/widgets/containers/active_product_container.dart';
 import 'package:aucsy/src/presentations/widgets/containers/product_container.dart';
@@ -103,7 +105,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: InkWell(
               borderRadius: BorderRadius.circular(40),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ExploreScreen(),
+                  ),
+                );
+              },
               child: Container(
                 height: 48,
                 width: 48,

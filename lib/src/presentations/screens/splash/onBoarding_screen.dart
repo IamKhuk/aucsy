@@ -139,23 +139,27 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                             ],
                           ),
                           SizedBox(height: 32.h),
-                          MainButton(
-                            text: 'Let\'s Explore 🔥',
-                            onPressed: () {
-                              Navigator.of(context).popUntil(
-                                (route) => route.isFirst,
-                              );
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return token == ''
-                                        ? const LoginScreen()
-                                        : const BottomNavScreen();
-                                  },
-                                ),
-                              );
-                            },
+                          Row(
+                            children: [
+                              MainButton(
+                                text: 'Let\'s Explore 🔥',
+                                onPressed: () {
+                                  Navigator.of(context).popUntil(
+                                    (route) => route.isFirst,
+                                  );
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return token == ''
+                                            ? const LoginScreen()
+                                            : const BottomNavScreen();
+                                      },
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
                           ),
                         ],
                       ),

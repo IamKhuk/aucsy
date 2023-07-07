@@ -129,4 +129,71 @@ class Defaults {
       bidMargin: 10,
     ),
   ];
+
+  List<BidModel> bids = [
+    BidModel(
+      bidId: 0005,
+      bidderUsername: 'bidderUsername',
+      bidderAvatar: "bidderAvatar",
+      price: 520,
+      time: DateTime.now(),
+    ),
+    BidModel(
+      bidId: 0005,
+      bidderUsername: 'two',
+      bidderAvatar: "two",
+      price: 500,
+      time: DateTime.now(),
+    ),
+    BidModel(
+      bidId: 0005,
+      bidderUsername: 'three',
+      bidderAvatar: "three",
+      price: 480,
+      time: DateTime.now(),
+    ),
+    BidModel(
+      bidId: 0005,
+      bidderUsername: 'four',
+      bidderAvatar: "four",
+      price: 460,
+      time: DateTime.now(),
+    ),
+    BidModel(
+      bidId: 0005,
+      bidderUsername: 'five',
+      bidderAvatar: "five",
+      price: 440,
+      time: DateTime.now(),
+    ),
+    BidModel(
+      bidId: 0005,
+      bidderUsername: 'sixsix',
+      bidderAvatar: "three",
+      price: 420,
+      time: DateTime.now(),
+    ),
+    BidModel(
+      bidId: 0005,
+      bidderUsername: 'seven',
+      bidderAvatar: "three",
+      price: 300,
+      time: DateTime.now(),
+    ),
+    BidModel(
+      bidId: 0005,
+      bidderUsername: 'eighty',
+      bidderAvatar: "three",
+      price: 120,
+      time: DateTime.now(),
+    ),
+  ];
+
+  List<String> ctg = [
+    "All",
+    "Trending",
+    "Live Auctions",
+    "Top",
+    "Creative",
+  ];
 }

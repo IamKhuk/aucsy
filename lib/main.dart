@@ -38,12 +38,6 @@ class MyApp extends StatelessWidget {
               brightness: Brightness.dark,
             ),
           ),
-          builder: (BuildContext context, Widget? child) {
-            return MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1),
-              child: child!,
-            );
-          },
           home: const SplashScreen(),
         );
       },

@@ -312,89 +312,87 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Row(
                   children: [
                     SizedBox(width: 24.w),
-                    Expanded(
-                      child: MainButton(
-                        text: "Sign Up",
-                        onPressed: () {
-                          if (_fullNameController.text.contains(' ') &&
-                              _fullNameController.text.length > 4 &&
-                              _usernameController.text.isNotEmpty &&
-                              Validators.emailValidator(
-                                      _emailController.text) ==
-                                  true &&
-                              Validators.passwordValidator(
-                                      _passController.text) ==
-                                  true &&
-                              _passController.text ==
-                                  _passAgainController.text) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return const VerificationScreen();
-                                },
-                              ),
-                            );
-                          }else if(_fullNameController.text.contains(' ')==false &&
-                              _fullNameController.text.length <= 4 &&
-                              _usernameController.text.isEmpty &&
-                              Validators.emailValidator(
-                                  _emailController.text) ==
-                                  false &&
-                              Validators.passwordValidator(
-                                  _passController.text) ==
-                                  false){
-                            CenterDialog.showActionFailed(
-                              context,
-                              'Error',
-                              'Please fill the forms to sign up',
-                            );
-                          } else if (_fullNameController.text.contains(' ')==false ||
-                              _fullNameController.text.length <= 4) {
-                            CenterDialog.showActionFailed(
-                              context,
-                              'Error',
-                              'Enter valid Full Name',
-                            );
-                          } else if (_usernameController.text.isEmpty) {
-                            CenterDialog.showActionFailed(
-                              context,
-                              'Error',
-                              'This username is not valid or already taken\nPlease enter other username',
-                            );
-                          } else if (Validators.emailValidator(
-                                  _emailController.text) ==
-                              false) {
-                            CenterDialog.showActionFailed(
-                              context,
-                              'Error',
-                              'Please enter valid email address',
-                            );
-                          } else if (Validators.passwordValidator(
-                                  _passController.text) ==
-                              false) {
-                            CenterDialog.showActionFailed(
-                              context,
-                              'Password Error',
-                              'Your password must contain at least one:\n- Uppercase letter\n- Special character\n- Number (0,...,9)',
-                            );
-                          } else if(_passController.text !=
-                              _passAgainController.text){
-                            CenterDialog.showActionFailed(
-                              context,
-                              'Password Error',
-                              'Confirming password must be the same as previously entered password',
-                            );
-                          } else {
-                            _resetValues();
-                            CenterDialog.showActionFailed(
-                              context,
-                              'Error',
-                              'Something went wrong\nPlease try again',
-                            );
-                          }
-                        },
-                      ),
+                    MainButton(
+                      text: "Sign Up",
+                      onPressed: () {
+                        if (_fullNameController.text.contains(' ') &&
+                            _fullNameController.text.length > 4 &&
+                            _usernameController.text.isNotEmpty &&
+                            Validators.emailValidator(
+                                    _emailController.text) ==
+                                true &&
+                            Validators.passwordValidator(
+                                    _passController.text) ==
+                                true &&
+                            _passController.text ==
+                                _passAgainController.text) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return const VerificationScreen();
+                              },
+                            ),
+                          );
+                        }else if(_fullNameController.text.contains(' ')==false &&
+                            _fullNameController.text.length <= 4 &&
+                            _usernameController.text.isEmpty &&
+                            Validators.emailValidator(
+                                _emailController.text) ==
+                                false &&
+                            Validators.passwordValidator(
+                                _passController.text) ==
+                                false){
+                          CenterDialog.showActionFailed(
+                            context,
+                            'Error',
+                            'Please fill the forms to sign up',
+                          );
+                        } else if (_fullNameController.text.contains(' ')==false ||
+                            _fullNameController.text.length <= 4) {
+                          CenterDialog.showActionFailed(
+                            context,
+                            'Error',
+                            'Enter valid Full Name',
+                          );
+                        } else if (_usernameController.text.isEmpty) {
+                          CenterDialog.showActionFailed(
+                            context,
+                            'Error',
+                            'This username is not valid or already taken\nPlease enter other username',
+                          );
+                        } else if (Validators.emailValidator(
+                                _emailController.text) ==
+                            false) {
+                          CenterDialog.showActionFailed(
+                            context,
+                            'Error',
+                            'Please enter valid email address',
+                          );
+                        } else if (Validators.passwordValidator(
+                                _passController.text) ==
+                            false) {
+                          CenterDialog.showActionFailed(
+                            context,
+                            'Password Error',
+                            'Your password must contain at least one:\n- Uppercase letter\n- Special character\n- Number (0,...,9)',
+                          );
+                        } else if(_passController.text !=
+                            _passAgainController.text){
+                          CenterDialog.showActionFailed(
+                            context,
+                            'Password Error',
+                            'Confirming password must be the same as previously entered password',
+                          );
+                        } else {
+                          _resetValues();
+                          CenterDialog.showActionFailed(
+                            context,
+                            'Error',
+                            'Something went wrong\nPlease try again',
+                          );
+                        }
+                      },
                     ),
                     SizedBox(width: 24.w),
                   ],

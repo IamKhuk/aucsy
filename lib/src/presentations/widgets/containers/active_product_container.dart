@@ -1,5 +1,6 @@
 import 'package:aucsy/src/domain/models/product_model.dart';
 import 'package:aucsy/src/theme/app_theme.dart';
+import 'package:aucsy/src/utils/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 
 class ActiveProductContainer extends StatefulWidget {
@@ -13,12 +14,6 @@ class ActiveProductContainer extends StatefulWidget {
 }
 
 class _ActiveProductContainerState extends State<ActiveProductContainer> {
-
-  LinearGradient usernameGradient = const LinearGradient(
-    colors: [Color(0xFFBAC1FF), Color(0xFF63FEFE), Color(0xFFFF3EEC),],
-    begin: Alignment.centerLeft,
-    end: Alignment.centerRight,
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +38,10 @@ class _ActiveProductContainerState extends State<ActiveProductContainer> {
               ),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
               child: Hero(
                 tag: widget.product,
                 child: Image.asset(
@@ -112,7 +110,7 @@ class _ActiveProductContainerState extends State<ActiveProductContainer> {
                                 const SizedBox(width: 4),
                                 ShaderMask(
                                   shaderCallback: (bounds) {
-                                    return usernameGradient.createShader(bounds);
+                                    return Constants.usernameGradient.createShader(bounds);
                                   },
                                   child: Text(
                                     "@${widget.product.creator.username}",

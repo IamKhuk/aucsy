@@ -1,10 +1,11 @@
 import 'package:aucsy/src/data/dataSources/local/defaults/defaults.dart';
+import 'package:aucsy/src/presentations/screens/menu/home/product_details_screen.dart';
 import 'package:aucsy/src/presentations/widgets/buttons/leading_back.dart';
 import 'package:aucsy/src/presentations/widgets/containers/explore_product_container.dart';
 import 'package:aucsy/src/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'dart:io';
 import '../../../widgets/texts/main_title.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -42,9 +43,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
           }
         },
         child: ListView(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
             top: 8,
-            bottom: 112,
+            bottom: Platform.isIOS ? 24 : 32,
           ),
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           children: [
@@ -118,7 +119,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   return Row(
                     children: [
                       GestureDetector(
-                        onTap: (){
+                        onTap: () {
                           setState(() {
                             selectedCtg = index;
                           });
@@ -169,8 +170,17 @@ class _ExploreScreenState extends State<ExploreScreen> {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    ExploreProductContainer(
-                      product: Defaults().products[index],
+                    GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (builder) =>
+                              ProductDetailsScreen(product: Defaults().products[index]),
+                        ),
+                      ),
+                      child: ExploreProductContainer(
+                        product: Defaults().products[index],
+                      ),
                     ),
                     index == Defaults().products.length - 1
                         ? Container()

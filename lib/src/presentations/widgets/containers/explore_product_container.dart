@@ -130,7 +130,7 @@ class _ExploreProductContainerState extends State<ExploreProductContainer> {
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
